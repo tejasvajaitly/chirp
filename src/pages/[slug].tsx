@@ -5,6 +5,7 @@ import { api } from "~/utils/api";
 import Image from "next/image";
 import { LoadingPage } from "~/components/loading";
 import PostView from "../components/postview";
+import { useRouter } from "next/router";
 
 const ProfileFeed = (props: { userId: string }) => {
   const { data, isLoading } = api.posts.getPostsByUserId.useQuery({
@@ -25,8 +26,13 @@ const ProfileFeed = (props: { userId: string }) => {
 };
 
 const ProfilePage: NextPage = () => {
+  const router = useRouter();
+  const { slug } = router.query;
+  if (!slug || typeof slug !== "string") return <div>user not found</div>;
+  const username = slug.replace("@", "");
+
   const { data, isLoading } = api.profile.getUserByUsername.useQuery({
-    username: "tejasvajaitly",
+    username,
   });
 
   if (isLoading) return <div>Loading...</div>;
