@@ -29,10 +29,10 @@ const ProfilePage: NextPage = () => {
   const router = useRouter();
   const { slug } = router.query;
   if (!slug || typeof slug !== "string") return <div>user not found</div>;
-  const username = slug.replace("@", "");
+  const id = slug.replace("@", "");
 
-  const { data, isLoading } = api.profile.getUserByUsername.useQuery({
-    username,
+  const { data, isLoading } = api.profile.getUserById.useQuery({
+    id,
   });
 
   if (isLoading) return <div>Loading...</div>;
