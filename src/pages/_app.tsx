@@ -13,7 +13,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <Head>
         <title>Chirp</title>
         <meta name="description" content="💭" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/chirp.svg" />
       </Head>
       <Toaster position="bottom-center" />
       <Component {...pageProps} />
